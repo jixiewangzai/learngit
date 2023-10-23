@@ -76,13 +76,11 @@ def test():
             output=model(input)
             tloss=losss(output,target)
             loss_list.append(tloss)
-            pred=output.max(dim=-1)[1]
+            pred=output.max(dim=-1)[1]#沿着最后一个维度找最大值，取得最大值对应的索引
             cur_acc=pred.eq(target).float().mean()
             acc_list.append(cur_acc)
     print("平均准确率，平均损失：",np.mean(acc_list),np.mean(loss_list))
 
-
-if __name__=='__main__':
-    for i in range(1):
-        train(i)
-    test()
+for i in range(1):
+    train(i)
+test()
